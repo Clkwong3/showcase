@@ -9,7 +9,7 @@ const Home = () => {
       <img
         className="w-full h-screen object-cover object-center"
         src="https://images.unsplash.com/photo-1598838449762-d967ae4546a5?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="SF Windmill"
+        alt="San Francisco Windmill"
       />
 
       {/* Introduction Section */}
@@ -18,7 +18,6 @@ const Home = () => {
         <div className="max-w-[700px] m-auto h-full w-full flex flex-col justify-center lg:items-start items-center">
           {/* Greeting */}
           <h1 className="sm:text-5xl text-4xl font-bold">Hello</h1>
-
           {/* Animated Typing Effect */}
           <h2 className="flex sm:text-3xl text-2xl pt-4">
             I am a
@@ -54,7 +53,6 @@ const Home = () => {
             >
               <FaGithub className="cursor-pointer" size={20} />
             </a>
-
             {/* LinkedIn Icon with Link */}
             <a
               href="https://www.linkedin.com/in/clarice-kwong/"
