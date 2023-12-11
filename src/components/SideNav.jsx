@@ -59,7 +59,7 @@ const SideNav = () => {
 
       {/* Render the nav links if the nav state is true */}
       {nav && (
-        <div className="fixed w-full h-screen bg-white/90 flex flex-col justify-center items-center z-20">
+        <div className="fixed w-full h-screen bg-white/60 flex flex-col justify-center items-center z-20">
           {/* Generate and display mobile nav links with labels */}
           {generateNavLinks(true, true)}
         </div>
