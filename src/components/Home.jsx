@@ -1,5 +1,6 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -42,6 +43,27 @@ const Home = () => {
               repeat={Infinity}
             />
           </h2>
+
+          {/* Icons with Links */}
+          <div className="flex justify-between pt-6 max-w-[50px] w-full">
+            {/* GitHub Icon with Link */}
+            <a
+              href="https://github.com/Clkwong3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub className="cursor-pointer" size={20} />
+            </a>
+
+            {/* LinkedIn Icon with Link */}
+            <a
+              href="https://www.linkedin.com/in/clarice-kwong/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="cursor-pointer" size={20} />
+            </a>
+          </div>
         </div>
       </div>
     </div>
