@@ -1,100 +1,75 @@
 import React, { useState } from "react";
+// Importing icons from react-icon packages
 import { AiOutlineMenu, AiOutlineHome, AiOutlineProject } from "react-icons/ai";
 import { BsPerson, BsMailboxFlag } from "react-icons/bs";
 import { GrProjects } from "react-icons/gr";
 
-// Building out the mobile navigation first
+// Array representing the nav items
+const navItems = [
+  { icon: <AiOutlineHome size={20} />, label: "Home", href: "#home" },
+  { icon: <GrProjects size={20} />, label: "Work", href: "#work" },
+  {
+    icon: <AiOutlineProject size={20} />,
+    label: "Projects",
+    href: "#projects",
+  },
+  { icon: <BsPerson size={20} />, label: "Resume", href: "#resume" },
+  { icon: <BsMailboxFlag size={20} />, label: "Contact", href: "#contact" },
+];
+
+// Common styles for each link
+const mobileLinkStyle =
+  "w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400";
+
+const desktopLinkStyle =
+  "rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300";
+
+// Function to generate nav links dynamically
+const generateNavLinks = (showLabels, isMobile) => {
+  const linkStyle = isMobile ? mobileLinkStyle : desktopLinkStyle; // Use ternary op to get the correct style based on isMobile parameter
+
+  // Map through each navigation item and create a link
+  return navItems.map((menuItem, menuPosition) => (
+    <a key={menuPosition} href={menuItem.href} className={linkStyle}>
+      {/* Display the icon associated with the navigation item */}
+      {menuItem.icon}
+      {/* Conditionally display the label if showLabels is true */}
+      {showLabels && <span className="pl-4">{menuItem.label}</span>}
+    </a>
+  ));
+};
+
+// Functional component for the SideNav
 const SideNav = () => {
-  const [nav, setNav] = useState(false); // Default value: false
-  // Change the state of the navbar
+  const [nav, setNav] = useState(false); // State to manage the nav visibility
+
+  // Function to handle toggling the nav state
   const handleNav = () => {
-    setNav(!nav); // Set the nav to the opposite of its current value
-    console.log("State Changed");
+    setNav(!nav); // Toggle the nav state
+    console.log("State Changed"); // Log a message when the state changes
   };
 
   return (
     <div>
-      {/* onClick = Run the handleNav function that will toggle the state back and forth */}
-      {/* md = media query */}
+      {/* Hamburger menu icon to trigger nav links */}
       <AiOutlineMenu
         onClick={handleNav}
         className="absolute top-4 right-4 z-[99] md:hidden"
       />
-      {/* Using ternary operator to show nav links, otherwise show nothing */}
-      {nav ? (
+
+      {/* Render the nav links if the nav state is true */}
+      {nav && (
         <div className="fixed w-full h-screen bg-white/90 flex flex-col justify-center items-center z-20">
-          <a
-            href="#main"
-            className="w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400"
-          >
-            <AiOutlineHome size={20} />
-            <span className="pl-4">Home</span>
-          </a>
-          <a
-            href="#work"
-            className="w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400"
-          >
-            <GrProjects size={20} />
-            <span className="pl-4">Work</span>
-          </a>
-          <a
-            href="#projects"
-            className="w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400"
-          >
-            <AiOutlineProject size={20} />
-            <span className="pl-4">Projects</span>
-          </a>
-          <a
-            href="#resume"
-            className="w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400"
-          >
-            <BsPerson size={20} />
-            <span className="pl-4">Resume</span>
-          </a>
-          <a
-            href="#contact"
-            className="w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400"
-          >
-            <BsMailboxFlag size={20} />
-            <span className="pl-4">Contact</span>
-          </a>
+          {/* Generate and display mobile nav links with labels */}
+          {generateNavLinks(true, true)}
         </div>
-      ) : (
-        ""
       )}
-      {/* Side buttons */}
-      <div className="md:block hidden fixed top-[25%] Z-10">
+
+      {/* Desktop version of the nav */}
+      <div className="md:block hidden fixed top-[25%] z-10">
         <div className="flex flex-col">
-          <a
-            href="#main"
-            className="rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300"
-          >
-            <AiOutlineHome size={20} />
-          </a>
-          <a
-            href="#work"
-            className="rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300"
-          >
-            <GrProjects size={20} />
-          </a>
-          <a
-            href="#projects"
-            className="rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300"
-          >
-            <AiOutlineProject size={20} />
-          </a>
-          <a
-            href="#resume"
-            className="rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300"
-          >
-            <BsPerson size={20} />
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300"
-          >
-            <BsMailboxFlag size={20} />
-          </a>
+          {/* Generate and display desktop nav links without labels */}
+          {generateNavLinks(false, false)}
         </div>
       </div>
     </div>
