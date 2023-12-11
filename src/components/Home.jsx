@@ -1,6 +1,7 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { VscGithub } from "react-icons/vsc";
+import { FaLinkedin } from "react-icons/fa6";
 
 const Home = () => {
   return (
@@ -44,14 +45,14 @@ const Home = () => {
           </h2>
 
           {/* Icons with Links */}
-          <div className="flex justify-between pt-6 max-w-[50px] w-full">
+          <div className="flex justify-between pt-6 max-w-[60px] w-full">
             {/* GitHub Icon with Link */}
             <a
               href="https://github.com/Clkwong3"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaGithub className="cursor-pointer" size={20} />
+              <VscGithub className="cursor-pointer" size={20} />
             </a>
             {/* LinkedIn Icon with Link */}
             <a
