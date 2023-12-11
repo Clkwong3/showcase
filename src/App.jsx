@@ -1,8 +1,11 @@
-import { useState } from "react";
-import "./App.css";
+import SideNav from "./components/Sidenav";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <SideNav />
+    </>
+  );
 }
 
 export default App;
