@@ -4,20 +4,16 @@ import { AiOutlineMenu, AiOutlineHome, AiOutlineProject } from "react-icons/ai";
 import { BsPerson, BsMailboxFlag } from "react-icons/bs";
 import { GrProjects } from "react-icons/gr";
 
-// Array representing the nav items
+// Nav items with icons, labels, and hrefs
 const navItems = [
   { icon: <AiOutlineHome size={20} />, label: "Home", href: "#home" },
   { icon: <GrProjects size={20} />, label: "Work", href: "#work" },
-  {
-    icon: <AiOutlineProject size={20} />,
-    label: "Projects",
-    href: "#projects",
-  },
+  { icon: <AiOutlineProject size={20} />, label: "Projects", href: "#projects" },
   { icon: <BsPerson size={20} />, label: "Resume", href: "#resume" },
   { icon: <BsMailboxFlag size={20} />, label: "Contact", href: "#contact" },
 ];
 
-// Common styles for each link
+// Styles for mobile and desktop links
 const mobileLinkStyle =
   "w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400";
 
@@ -25,12 +21,17 @@ const desktopLinkStyle =
   "rounded-full shadow-md bg-gray-50 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300";
 
 // Function to generate nav links dynamically
-const generateNavLinks = (showLabels, isMobile) => {
+const generateNavLinks = (showLabels, isMobile, closeNav) => {
   const linkStyle = isMobile ? mobileLinkStyle : desktopLinkStyle; // Use ternary op to get the correct style based on isMobile parameter
 
   // Map through each navigation item and create a link
   return navItems.map((menuItem, menuPosition) => (
-    <a key={menuPosition} href={menuItem.href} className={linkStyle}>
+    <a
+      key={menuPosition}
+      href={menuItem.href}
+      className={linkStyle}
+      onClick={closeNav}
+    >
       {/* Display the icon associated with the navigation item */}
       {menuItem.icon}
       {/* Conditionally display the label if showLabels is true */}
@@ -39,7 +40,7 @@ const generateNavLinks = (showLabels, isMobile) => {
   ));
 };
 
-// Functional component for the SideNav
+// Main SideNav component
 const SideNav = () => {
   const [nav, setNav] = useState(false); // State to manage the nav visibility
 
@@ -49,6 +50,11 @@ const SideNav = () => {
     console.log("State Changed"); // Log a message when the state changes
   };
 
+  // Function to close the nav
+  const closeNav = () => {
+    setNav(false); // Set nav state to false to close the menu
+  };
+  
   return (
     <div>
       {/* Hamburger menu icon to trigger nav links */}
@@ -61,7 +67,7 @@ const SideNav = () => {
       {nav && (
         <div className="fixed w-full h-screen bg-white/60 flex flex-col justify-center items-center z-20">
           {/* Generate and display mobile nav links with labels */}
-          {generateNavLinks(true, true)}
+          {generateNavLinks(true, true, closeNav)}
         </div>
       )}
 
@@ -69,7 +75,7 @@ const SideNav = () => {
       <div className="md:block hidden fixed top-[25%] z-10">
         <div className="flex flex-col">
           {/* Generate and display desktop nav links without labels */}
-          {generateNavLinks(false, false)}
+          {generateNavLinks(false, false, closeNav)}
         </div>
       </div>
     </div>
