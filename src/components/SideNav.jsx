@@ -22,7 +22,7 @@ const mobileLinkStyle =
   "w-[75%] flex justify-center items-center rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-400";
 
 const desktopLinkStyle =
-  "rounded-full shadow-lg bg-gray-100 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300";
+  "rounded-full shadow-md bg-gray-50 shadow-gray-400 m-4 p-4 cursor-pointer hover:scale-110 ease-in duration-300";
 
 // Function to generate nav links dynamically
 const generateNavLinks = (showLabels, isMobile) => {
